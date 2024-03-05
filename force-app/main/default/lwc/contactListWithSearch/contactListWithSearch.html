@@ -1,0 +1,72 @@
+<template>
+    <lightning-card title="CompositionContactSearch" icon-name="custom:custom57">
+        
+
+        <template if:true={searchmode}>
+            <div class="slds-var-m-around_medium">
+                <lightning-input
+                    type="search"
+                    onchange={handleKeyChange}
+                    class="slds-show slds-is-relative slds-var-m-bottom_small"
+                    label="Search"
+                ></lightning-input>
+                           
+                <template if:true={contacts}>
+                    <template for:each={contacts} for:item="contact">
+                        <c-contact-tile
+                            class="slds-show slds-is-relative"
+                            key={contact.Id}
+                            contact={contact}
+                            onselect={handleselect}
+                        ></c-contact-tile>
+                    </template>
+                </template>
+                <lightning-button label="New" title="Non-primary action" onclick={handleNew} class="slds-m-left_x-small"></lightning-button> 
+            </div>
+        </template>    
+
+        
+        <template if:true={newmode}>
+            <lightning-record-edit-form object-api-name="Contact">
+                <lightning-messages>
+                </lightning-messages>
+                <lightning-input-field field-name="Name">
+                </lightning-input-field>
+                <lightning-input-field field-name="AccountId">
+                </lightning-input-field>
+                <lightning-input-field field-name="Phone">
+                </lightning-input-field>
+                <lightning-input-field field-name="Title">
+                </lightning-input-field>                                                
+                    <lightning-button
+                        class="slds-m-top_small"
+                        type="submit"
+                        label="Save">
+                    </lightning-button>
+                    <lightning-button
+                        class="slds-m-top_small"
+                        onclick={handleCancel}
+                        label="Cancel">
+                    </lightning-button>                    
+            </lightning-record-edit-form>
+        </template>    
+        
+
+        <template if:true={detailmode}>
+            <lightning-record-view-form record-id="0032x000002yyTjAAI" object-api-name="Contact">
+                <div class="slds-box">
+                    <lightning-output-field field-name="Name">
+                    </lightning-output-field>
+                    <lightning-output-field field-name="Phone">
+                    </lightning-output-field>
+                    <lightning-output-field field-name="Company__c">
+                    </lightning-output-field>     
+                    <lightning-output-field field-name="Title">
+                    </lightning-output-field>                               
+                </div>
+            </lightning-record-view-form>
+        </template>    
+
+
+    </lightning-card>
+</template>

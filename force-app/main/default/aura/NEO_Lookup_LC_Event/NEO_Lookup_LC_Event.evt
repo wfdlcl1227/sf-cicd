@@ -1,0 +1,6 @@
+<aura:event type="APPLICATION" description="Event template">
+	<aura:attribute name="dataObj" type="SObject" />
+	<aura:attribute name="selectedObj" type="SObject" />
+	<aura:attribute name="targetAttr" type="String" default="" />
+	<aura:attribute name="actionType" type="String" default="" />
+</aura:event>

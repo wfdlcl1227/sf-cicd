@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Contact List" icon-name="custom:custom57">
+    <template if:false={selectedID}>
+        <lightning-input
+        type="search"
+        onchange={handleKeyChange}
+        placeholder="search contact name here..."
+        class="slds-show slds-is-relative slds-var-m-bottom_small"
+    ></lightning-input>
+        <div class="slds-var-m-around_medium">
+            <template for:each={contacts} for:item="contact">
+                <c-contact-tile
+                    class="slds-show slds-is-relative"
+                    key={contact.Id}
+                    contact={contact} 
+                    onselect={handleselect}
+                ></c-contact-tile>
+            </template>
+        </div>
+    
+    </template>
+    <template if:true={selectedID}>
+        
+    <lightning-record-view-form
+            record-id={selectedID}
+            object-api-name="Contact">
+        <div class="slds-box">
+            <lightning-output-field field-name="Name">
+            </lightning-output-field>
+            <lightning-output-field field-name="Phone">
+            </lightning-output-field>
+            <lightning-output-field field-name="Company">
+            </lightning-output-field>     
+            <lightning-output-field field-name="Title">
+            </lightning-output-field>                               
+        </div>
+    </lightning-record-view-form>
+    </template>
+    </lightning-card>
+</template>

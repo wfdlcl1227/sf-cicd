@@ -1,0 +1,30 @@
+<apex:page showHeader="true" sidebar="false" standardStylesheets="false">
+    <script type="text/javascript">
+    var __sfdcSessionId = '{!GETSESSIONID()}';
+    </script>
+    <script src="https://test-chris-dev-ed.my.salesforce.com/soap/ajax/51.0/connection.js" type="text/javascript"></script>
+    <script>
+    function apiCall() {
+
+               
+       sforce.connection.remoteFunction({
+            url : "https://api.iss.hkairportrewards.com/loyalty/offers/member/AA-0000106363/ecoupons",
+            //requestData: envelope,
+            requestHeaders: {"Authorization": "Bearer 00D2v000002G018!ARsAQB7TPxoeeC08lb1gPAbWDnH1eexs7ToPTkAA2yfe9zfRv7dXbjzDrPkrdAU6mcVF425rRxOhpveqV3KnVTvYObQVidqu",
+                            "Access-Control-Allow-Credentials":"true","Access-Control-Allow-Origin":"*"},
+            method: "POST",
+            onSuccess : function(response) {
+                console.log(response);
+            }
+        });                 
+               
+    }
+    </script>
+   
+    <apex:form >
+        <!--call javaScript-->
+        <input type="button" value="Call API" onclick="apiCall()" />
+        <div id="apiData">
+        </div>
+    </apex:form>
+</apex:page>

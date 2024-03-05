@@ -1,0 +1,366 @@
+<aura:component controller="NEO_AggregationFunction_LC_Ctrl" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:availableForFlowScreens,lightning:actionOverride" access="global">
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+<aura:attribute name="recordId" type="String" />
+
+<aura:attribute name="aggregationObj" type="NEO_Aggregation__c" />
+<aura:attribute name="keyPrefix" type="String" />
+<aura:attribute name="masterObjects" type="List" />
+<aura:attribute name="summarizedObjects" type="List" />
+<aura:attribute name="rollupTypeList" type="List" />
+
+<aura:attribute name="fieldsToAggregate" type="List" />
+<aura:attribute name="fieldsToGroup" type="List" />
+<aura:attribute name="fieldsToGroupValues" type="List" />
+
+
+<aura:attribute name="criteriaWrapperList" type="List" />
+
+<aura:attribute name="showLoading" type="Boolean" default="false" />
+<aura:if isTrue="{!v.showLoading}">
+    <lightning:spinner variant="brand" size="large"/>
+</aura:if>
+
+<aura:attribute name="showSuccess" type="Boolean" default="false" />
+<aura:attribute name="showWarning" type="Boolean" default="false" />
+<aura:attribute name="showError" type="Boolean" default="false" />
+<aura:attribute name="alternativeText" type="String" default="" />
+
+<aura:attribute name="labelMaps" type="Map" default="" />
+<aura:attribute name="criteriaLabelMaps" type="Map" default="" />
+<aura:attribute name="showScope" type="Boolean" default="false" />
+
+<aura:attribute name="defaultWarningMsg" type="String" default="{!$Label.c.NEO_RE_Check_Page_Msg}" />
+
+<!-- Success -->
+<aura:if isTrue="{!v.showSuccess}">
+<div class="slds-notify_container slds-is-absolute">
+    <div class="slds-notify slds-notify_toast slds-theme_success" role="alert">
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Success}</span>
+        <span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top" title="{!v.alternativeText}">
+            <lightning:icon iconName="utility:success" alternativeText="{!$Label.c.NEO_RE_Success}" size="small" variant="inverse" />
+        </span>
+        <div class="slds-notify__content">
+            <h2 class="slds-text-heading_small ">{!v.alternativeText}</h2>
+        </div>
+        <div class="slds-notify__close">
+            <lightning:buttonIcon iconName="utility:close" alternativeText="{!$Label.c.NEO_RE_Close}" size="large" variant="bare-inverse" onclick="{!c.jsCloseAlert}" />
+        </div>
+    </div>
+</div>
+</aura:if>
+
+<!-- Warning -->
+<aura:if isTrue="{!v.showWarning}">
+<div class="slds-notify_container slds-is-absolute">
+    <div class="slds-notify slds-notify_toast slds-theme_warning" role="alert">
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Warning}</span>
+        <span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top" title="{!v.alternativeText}">
+            <lightning:icon iconName="utility:warning" alternativeText="{!$Label.c.NEO_RE_Warning}" size="small" variant="inverse" />
+        </span>
+        <div class="slds-notify__content">
+            <h2 class="slds-text-heading_small ">{!v.alternativeText}</h2>
+        </div>
+        <div class="slds-notify__close">
+            <lightning:buttonIcon iconName="utility:close" alternativeText="{!$Label.c.NEO_RE_Close}" size="large" variant="bare-inverse" onclick="{!c.jsCloseAlert}" />
+        </div>
+    </div>
+</div>
+</aura:if>
+
+<!-- Error -->
+<aura:if isTrue="{!v.showError}">
+<div class="slds-notify_container slds-is-absolute">
+    <div class="slds-notify slds-notify_toast slds-theme_error" role="alert">
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Error}</span>
+        <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top" title="{!v.alternativeText}">
+            <lightning:icon iconName="utility:error" alternativeText="{!$Label.c.NEO_RE_Error}" size="small" variant="inverse" />
+        </span>
+        <div class="slds-notify__content">
+            <h2 class="slds-text-heading_small ">{!v.alternativeText}</h2>
+        </div>
+        <div class="slds-notify__close">
+            <lightning:buttonIcon iconName="utility:close" alternativeText="{!$Label.c.NEO_RE_Close}" size="large" variant="bare-inverse" onclick="{!c.jsCloseAlert}" />
+        </div>
+    </div>
+</div>
+</aura:if>
+
+<aura:if isTrue="{!v.showScope}">
+<div class="slds-scope">
+    <aura:if isTrue="{!false}">
+    <lightning:spinner alternativeText="Loading" variant="brand" size="large" />
+    </aura:if>
+
+	<!-- Header -->
+    <div class="slds-page-header">
+	<div class="slds-grid">
+        <div class="slds-col slds-has-flexi-truncate">
+            <div class="slds-media slds-no-space slds-grow"> 
+                <div class="slds-media__figure">
+                <lightning:icon iconName="standard:event" alternativeText="Event" />
+                </div>
+
+                <div class="slds-media__body">
+                <nav>
+                <ol class="slds-breadcrumb slds-line-height_reset">
+                <aura:if isTrue="{!empty(v.aggregationObj.Id)}">
+                    <li class="slds-breadcrumb__item"><span>{!$Label.c.NEO_RE_New}</span></li>
+                </aura:if>
+                <aura:if isTrue="{!!empty(v.aggregationObj.Id)}">
+                    <li class="slds-breadcrumb__item"><span>{!v.aggregationObj.Name}</span></li>
+                </aura:if>
+                </ol>
+                </nav>
+
+                <h1 class="slds-page-header__title slds-p-right_x-small">
+                <button class="slds-button slds-button_reset slds-type-focus slds-truncate" aria-haspopup="true" title="">
+                    <span class="slds-grid slds-has-flexi-truncate slds-grid_vertical-align-center">
+                    <span class="slds-truncate" title="New"><span>{!$Label.c.NEO_RE_Aggregation_Function}</span></span>
+                    </span>
+                </button>
+                </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-col slds-align_absolute-center">
+        </div>
+
+        <!-- Button Bar -->
+        <div class="slds-col slds-no-flex slds-grid slds-align-top slds-p-bottom_xx-small">
+        	<div class="slds-button-group" role="group">
+            <lightning:button variant="brand" label="{!$Label.c.NEO_RE_Save}" title="{!$Label.c.NEO_RE_Save}" onclick="{!c.jsSave}" />
+            <lightning:button label="{!$Label.c.NEO_RE_Cancel}" title="{!$Label.c.NEO_RE_Cancel}" onclick="{!c.jsCancel}"/>
+            </div>
+        </div>
+    </div>
+    </div>
+
+	<!-- Aggregation Function Information -->
+	<div class="slds-section slds-is-open">
+	<h3 class="slds-section__title slds-theme_shade">
+	<span class="slds-icon_container slds-icon-utility-chevronright slds-p-left_x-small">
+		<lightning:icon iconName="utility:chevronright" alternativeText="Search Criteria" size="xx-small" />
+		<span class="slds-assistive-text">{!$Label.c.NEO_RE_Basic_Information}</span>
+	</span>
+	<span class="slds-truncate slds-p-horizontal_xx-small" title="Search Criteria">{!$Label.c.NEO_RE_Basic_Information}</span>
+  	</h3>
+  	<div aria-hidden="false" class="slds-section__content">
+        <div class="slds-grid slds-wrap slds-gutters_x-large">
+            <div class="slds-col slds-size_1-of-2">
+                <lightning:input aura:id="NEO_aggregation_form_item" label="{!v.labelMaps.Aggregation_Name__c}" value="{!v.aggregationObj.Aggregation_Name__c}" required="true" />
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.Active__c}</label>
+                <div class="slds-form-element__control">
+                    <lightning:input type="checkbox" checked="{!v.aggregationObj.Active__c}" />
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+            <lightning:select aura:id="NEO_aggregation_form_item" label="{!v.labelMaps.Master_Object__c}" onchange="{!c.jsLoadSummarizedObjects}" value="{!v.aggregationObj.Master_Object__c}" required="true">
+                <option value="">&nbsp;</option>
+                <aura:iteration items="{!v.masterObjects}" var="row">
+                    <option value="{!row.value}">{!row.label}</option>
+                </aura:iteration>
+            </lightning:select>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+            <lightning:select aura:id="NEO_aggregation_form_item" label="{!v.labelMaps.Roll_Up_Type__c}" value="{!v.aggregationObj.Roll_Up_Type__c}" onchange="{!c.jsLoadFieldList}" required="true">
+                <option value="">&nbsp;</option>
+                <aura:iteration items="{!v.rollupTypeList}" var="row">
+                    <option value="{!row.value}">{!row.label}</option>
+                </aura:iteration>
+            </lightning:select>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+            <lightning:select aura:id="NEO_aggregation_form_item" label="{!v.labelMaps.NEO_Summarized_Object__c}" value="{!v.aggregationObj.NEO_Summarized_Object__c}" onchange="{!c.jsLoadFieldList}" required="true">
+                <option value="">&nbsp;</option>
+                <aura:iteration items="{!v.summarizedObjects}" var="row">
+                    <option value="{!row.Id}">{!row.NEO_Child_Object_Label__c}</option>
+                </aura:iteration>
+            </lightning:select>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+            <lightning:select label="{!v.labelMaps.Fields_To_Aggregate__c}" value="{!v.aggregationObj.Fields_To_Aggregate__c}">
+                <option value="">&nbsp;</option>
+                <aura:iteration items="{!v.fieldsToAggregate}" var="row">
+                    <option value="{!row.value}">{!row.label}</option>
+                </aura:iteration>
+            </lightning:select>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.NEO_Summarized_All_Records__c}</label>
+                <div class="slds-form-element__control">
+                    <lightning:input type="checkbox" checked="{!v.aggregationObj.NEO_Summarized_All_Records__c}" />
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <lightning:textarea label="{!v.labelMaps.Description__c}" value="{!v.aggregationObj.Description__c}" />
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+            <lightning:dualListbox label= "{!v.labelMaps.Fields_To_Group__c}" 
+                           sourceLabel="{!$Label.c.NEO_RE_Available}" 
+                           selectedLabel="{!$Label.c.NEO_RE_Selected}"
+                           options="{!v.fieldsToGroup}"
+                           value="{!v.fieldsToGroupValues}"
+                           size="3"
+                           onchange="{!c.jsChangeFieldsToGroup}" />
+            </div>
+        </div>
+  	</div>
+  	</div>
+
+  	<!-- Criteria -->
+	<div class="slds-section slds-is-open">
+  	<h3 class="slds-section__title slds-theme_shade">
+  	<span class="slds-icon_container slds-icon-utility-chevronright slds-p-left_x-small">
+  		<lightning:icon iconName="utility:chevronright" alternativeText="Search Criteria" size="xx-small" />
+    	<span class="slds-assistive-text">{!$Label.c.NEO_RE_Filter_Criteria}</span>
+  	</span>
+    <span class="slds-truncate slds-p-horizontal_xx-small" title="{!$Label.c.NEO_RE_Filter_Criteria}">{!$Label.c.NEO_RE_Filter_Criteria}</span>
+  	</h3>
+  	<div aria-hidden="false" class="slds-section__content">
+        <div class="slds-expression">
+        <!-- Logic -->
+        <div class="slds-expression__custom-logic">
+            <lightning:input label="{!v.labelMaps.Custom_Logic__c}" value="{!v.aggregationObj.Custom_Logic__c}" />
+        </div>
+        <ul>
+        <aura:iteration items="{!v.criteriaWrapperList}" var="r">
+        <li class="slds-expression__row">
+        <fieldset>
+        <legend class="slds-expression__legend">
+            <span>{!r.criteriaObj.Row_Serial_No__c}</span>
+            <span class="slds-assistive-text">Condition {!r.criteriaObj.Row_Serial_No__c}</span>
+        </legend>
+        <div class="slds-grid slds-gutters_x-small">
+            <div class="slds-col">
+            <lightning:select aura:id="NEO_aggregation_form_item" label="{!v.criteriaLabelMaps.NEO_Resource_Text__c}" value="{!r.criteriaObj.NEO_Resource_Text__c}" onchange="{!c.jsChangeResource}" class="{!r.criteriaObj.Row_Serial_No__c}" required="true">
+                <option value="">&nbsp;</option>
+                <aura:iteration items="{!r.resourceOptions}" var="row">
+                    <option value="{!row.value}">{!row.label}</option>
+                </aura:iteration>
+            </lightning:select>
+            </div>
+            <aura:if isTrue="{!r.resourceOperatorOptions.length > 0}">
+            <div class="slds-col slds-grow-none">
+                <lightning:select label="{!v.criteriaLabelMaps.NEO_Resource_Value__c}" value="{!r.criteriaObj.NEO_Resource_Operator__c}" onchange="{!c.jsChangeResourceOperator}" class="{!r.criteriaObj.Row_Serial_No__c}">
+                    <option value="">&nbsp;</option>
+                    <aura:iteration items="{!r.resourceOperatorOptions}" var="row">
+                    <option value="{!row.value}">{!row.label}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <div class="slds-col">
+            <!-- Resource value part -->
+            <aura:if isTrue="{!r.resourceValueDisplayType == 'Picklist'}">
+                <lightning:select label="{!v.criteriaLabelMaps.NEO_Resource_Value__c}" value="{!r.criteriaObj.NEO_Resource_Value__c}" class="{!r.criteriaObj.Row_Serial_No__c}">
+                    <option value="">&nbsp;</option>
+                    <aura:iteration items="{!r.resourceValueOptions}" var="row">
+                    <option value="{!row.value}">{!row.label}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:if>
+            <aura:if isTrue="{!r.resourceValueDisplayType == 'Number' || r.resourceValueDisplayType == 'Currency' || r.resourceValueDisplayType == 'Decimal'}">
+                <lightning:input type="number" label="{!v.criteriaLabelMaps.NEO_Resource_Value__c}" value="{!r.criteriaObj.NEO_Resource_Value__c}" />
+            </aura:if>
+            </div>
+            </aura:if>
+            <div class="slds-col slds-grow-none slds-align_absolute-center slds-p-top_large">
+                <lightning:icon label="" iconName="utility:chevronright" size="xx-small" />
+            </div>
+
+            <!-- Operator section -->
+            <div class="slds-col slds-grow-none">
+            <lightning:select aura:id="NEO_aggregation_form_item" label="{!v.criteriaLabelMaps.NEO_Operator_Text__c}" value="{!r.criteriaObj.NEO_Operator_Text__c}" onchange="{!c.jsChangeOperator}" class="{!r.criteriaObj.Row_Serial_No__c}" required="true">
+                <option value="">&nbsp;</option>
+                <aura:iteration items="{!r.operatorOptions}" var="row">
+                    <option value="{!row.value}">{!row.label}</option>
+                </aura:iteration>
+            </lightning:select>
+            </div>
+            <div class="slds-col slds-grow-none slds-align_absolute-center slds-p-top_large">
+                <lightning:icon label="" iconName="utility:chevronright" size="xx-small" />
+            </div>
+
+            <!-- Value section -->
+            <div class="slds-col">
+                <!-- Default Text -->
+                <aura:if isTrue="{!r.valueDisplayType == 'Text'}">
+                <lightning:input label="{!v.criteriaLabelMaps.NEO_Value_Text__c}" value="{!r.criteriaObj.NEO_Value_Text__c}" maxlength="255" />
+                </aura:if>
+
+                <!-- Picklist -->
+                <aura:if isTrue="{!r.valueDisplayType == 'Picklist'}">
+                <lightning:select label="{!v.criteriaLabelMaps.NEO_Value_Text__c}" value="{!r.criteriaObj.NEO_Value_Text__c}">
+                    <option value="">&nbsp;</option>
+                    <aura:iteration items="{!r.valueOptions}" var="row">
+                        <option value="{!row.value}">{!row.label}</option>
+                    </aura:iteration>
+                </lightning:select>
+                </aura:if>
+
+                <!-- Date -->
+                <aura:if isTrue="{!r.valueDisplayType == 'Date'}">
+                    <lightning:input label="{!v.criteriaLabelMaps.NEO_Value_Text__c}" type="date" value="{!r.criteriaObj.NEO_Value_Date__c}" />
+                </aura:if>
+
+                <!-- Datetime -->
+                <aura:if isTrue="{!r.valueDisplayType == 'Datetime'}">
+                    <lightning:input label="{!v.criteriaLabelMaps.NEO_Value_Text__c}" type="datetime" value="{!r.criteriaObj.NEO_Value_Datetime__c}" />
+                </aura:if>
+
+                <!-- Time -->
+                <aura:if isTrue="{!r.valueDisplayType == 'Time'}">
+                    <lightning:input label="{!v.criteriaLabelMaps.NEO_Value_Text__c}" type="time" value="{!r.criteriaObj.NEO_Value_Time__c}" />
+                </aura:if>
+
+                <!-- Number -->
+                <aura:if isTrue="{!r.valueDisplayType == 'Number'}">
+                    <lightning:input label="{!v.criteriaLabelMaps.NEO_Value_Text__c}" type="number" value="{!r.criteriaObj.NEO_Value_Text__c}" step="0.01" />
+                </aura:if>
+
+                <!-- Percent -->
+                <aura:if isTrue="{!r.valueDisplayType == 'Currency'}">
+                    <lightning:input label="{!v.criteriaLabelMaps.NEO_Value_Text__c}" type="number" formatter="currency" step="0.01" value="{!r.criteriaObj.NEO_Value_Text__c}" />
+                </aura:if>
+
+                <!-- Percent -->
+                <aura:if isTrue="{!r.valueDisplayType == 'Percent'}">
+                    <lightning:input label="{!v.criteriaLabelMaps.NEO_Value_Text__c}" type="number" formatter="percent" step="0.01" value="{!r.criteriaObj.NEO_Value_Text__c}" />
+                </aura:if>
+
+                <!-- Email -->
+                <aura:if isTrue="{!r.valueDisplayType == 'Email'}">
+                    <lightning:input type="email" label="{!v.criteriaLabelMaps.NEO_Value_Text__c}" value="{!r.criteriaObj.NEO_Value_Text__c}" />
+                </aura:if>
+            </div>
+            <div class="slds-col slds-grow-none slds-align_absolute-center slds-p-top_large">
+                <lightning:buttonIcon iconName="utility:delete" alternativeText="{!$Label.c.NEO_RE_Delete}" size="x-small" onclick="{!c.jsDeleteCriteriaRow}" value="{!r.criteriaObj.Row_Serial_No__c}" />
+            </div>
+        </div>
+        </fieldset>
+        </li>
+        </aura:iteration>
+        </ul>
+
+        <div class="slds-expression__buttons">
+            <lightning:button label="{!$Label.c.NEO_RE_Add_Condition}" iconName="utility:add" iconPosition="left"  variant="brand" onclick="{!c.jsAddCriteriaRow}" />
+        </div>
+        </div>
+  	</div>
+  	</div>
+</div>
+</aura:if>
+</aura:component>

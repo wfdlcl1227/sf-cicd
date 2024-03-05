@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NEO_Enable_FACE_Cover__c</fullName>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId>
+    <label>Enable FACE Cover</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

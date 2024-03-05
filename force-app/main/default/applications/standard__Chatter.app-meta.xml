@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <tabs>standard-Chatter</tabs>
+    <tabs>standard-UserProfile</tabs>
+    <tabs>standard-OtherUserProfile</tabs>
+    <tabs>standard-CollaborationGroup</tabs>
+    <tabs>standard-File</tabs>
+    <tabs>NEO_Rule__c</tabs>
+    <tabs>NEO_Operator__c</tabs>
+    <tabs>NEO_Criteria__c</tabs>
+    <tabs>NEO_Variable__c</tabs>
+    <tabs>NEO_Aggregation__c</tabs>
+    <tabs>NEO_Event__c</tabs>
+    <tabs>Sharing_Testing__c</tabs>
+    <tabs>Order__x</tabs>
+    <tabs>Address__x</tabs>
+    <tabs>Snapshot__x</tabs>
+</CustomApplication>

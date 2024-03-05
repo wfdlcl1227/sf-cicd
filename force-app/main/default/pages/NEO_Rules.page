@@ -1,0 +1,32 @@
+<apex:page standardController="NEO_Rule__c" extensions="NEO_Rules_Ctrl" sidebar="false">
+<apex:includeLightning />
+<div id="NEO_rules_LC_binding" style="min-height: 360px;"></div>
+
+<script>
+// Here 'VfApp' Is Lightning Application Name
+$Lightning.use("c:NEO_App", function() {
+  /* 'LcForVf' is Lightning Component Name which we are Displaying In Vf Page 
+   * syntax for create lightning component dynamically :
+   * $Lightning.createComponent(String type, Object attributes, String locator, function callback) */
+    $Lightning.createComponent("c:NEO_Rules_LC",
+    { 
+      // Set Lightning Component Attributes Property before creating Lightning Component In Visualforce page 
+        // textColor : "Red",
+        // currentUserName : '{!$User.FirstName} {!$User.LastName}'
+        recordId : "{!recordId}",
+        strMasterObjectName : "{!strMasterObjectName}"
+    },
+   "NEO_rules_LC_binding",
+    function(component) {
+        // create component Callback, Lightning Component has been Created,
+        // Now you can set more lightning Component attributes here,
+        // and do more cool stuff here
+        // component.set("v.accId" , '{!$CurrentPage.parameters.recId}');
+        console.log(component);
+        if (window.parent) {
+          window.parent.document.title = "Pfizer - NEO Rules";
+        }
+    });
+  });
+</script>
+</apex:page>

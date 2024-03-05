@@ -1,0 +1,40 @@
+<apex:page controller="ExcelController" cache="true" readOnly="true"  showheader="false" contentType="application/vnd.ms-excel#{!fileName}.xlsapplication/vnd.ms-excel#{!fileName}.xls;charset=utf-8" >
+<head>
+
+
+<style>
+    .header {
+    background: #F08080;
+    text-align: center;
+    font-weight : bold;
+    }       
+</style>
+
+</head>
+
+<apex:pageBlock >
+    <apex:dataTable value="{!rows}" var="row" rules="all" border="1">\
+    <apex:column headerValue="Type" headerClass="header">
+        <apex:outputPanel layout="block">
+            <apex:outputText value="AC" />
+        </apex:outputPanel>
+    </apex:column>    
+    <apex:column headerValue="Id" headerClass="header">
+        <apex:outputPanel layout="block">
+        <apex:outputField value="{!row.Id}" />
+        </apex:outputPanel>
+    </apex:column>
+    <apex:column headerValue="Name" headerClass="header">
+        <apex:outputPanel layout="block">
+        <apex:outputField value="{!row.Name}" />
+        </apex:outputPanel>
+    </apex:column>
+    <apex:column headerValue="Phone" headerClass="header">
+        <apex:outputPanel layout="block">
+        <apex:outputField value="{!row.Phone}" />
+        </apex:outputPanel>
+    </apex:column>    
+</apex:dataTable>
+</apex:pageBlock>
+
+</apex:page>

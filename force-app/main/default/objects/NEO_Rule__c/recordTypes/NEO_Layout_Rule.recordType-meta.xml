@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NEO_Layout_Rule</fullName>
+    <active>true</active>
+    <description>CN: Layout rule</description>
+    <label>Layout Rule</label>
+    <picklistValues>
+        <picklist>Approval_Level__c</picklist>
+        <values>
+            <fullName>BU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Second Level</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Hard_Stop_Warning__c</picklist>
+        <values>
+            <fullName>Hard Stop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warning</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

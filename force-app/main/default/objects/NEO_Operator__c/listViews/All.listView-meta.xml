@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Operator_Label__c</columns>
+    <columns>Operator_Format__c</columns>
+    <columns>Parameter_Data_Type__c</columns>
+    <columns>NEO_Data_Type_Available__c</columns>
+    <columns>NEO_Math_Operator_Used__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+    <language>en_US</language>
+</ListView>

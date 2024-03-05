@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NEO_Summarized_Object__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Summarized Object</label>
+    <referenceTo>NEO_Variable_Association__c</referenceTo>
+    <relationshipLabel>NEO Aggregations</relationshipLabel>
+    <relationshipName>NEO_Aggregations</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

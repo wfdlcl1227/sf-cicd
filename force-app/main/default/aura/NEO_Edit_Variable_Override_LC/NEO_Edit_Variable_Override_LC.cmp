@@ -1,0 +1,782 @@
+<aura:component controller="NEO_Edit_Variable_Override_LC_Ctrl" implements="force:appHostable,flexipage:availableForRecordHome,lightning:actionOverride,force:hasRecordId,flexipage:availableForAllPageTypes" access="global">
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+<aura:attribute name="recordId" type="String" />
+
+<aura:attribute name="variableObj" type="NEO_Variable__c" />
+<aura:attribute name="oldVariableObj" type="NEO_Variable__c" />
+<aura:attribute name="keyPrefix" type="String" />
+<aura:attribute name="variableWrapperObj" type="SObject" />
+<aura:attribute name="variableWrapperList" type="List" />
+
+<aura:attribute name="variableAssociationWrapperList" type="List" />
+<aura:attribute name="allVariableAssociationWrapperList" type="List" />
+
+<aura:attribute name="fieldsWrapperList" type="List" />
+<aura:attribute name="allFieldsWrapperList" type="List" />
+<aura:attribute name="stepWrapperList" type="List" />
+<aura:attribute name="initStepWrapperList" type="List" />
+
+<aura:attribute name="showLoading" type="Boolean" default="false" />
+<aura:if isTrue="{!v.showLoading}">
+    <lightning:spinner variant="brand" size="large"/>
+</aura:if>
+
+<aura:attribute name="showListLoading" type="Boolean" default="false" />
+
+<aura:attribute name="labelMaps" type="Map" />
+<aura:attribute name="variableAssociationLabelMaps" type="Map" />
+<aura:attribute name="ruleLabelMaps" type="Map" />
+<aura:attribute name="showSuccess" type="Boolean" default="false" />
+<aura:attribute name="showWarning" type="Boolean" default="false" />
+<aura:attribute name="showError" type="Boolean" default="false" />
+<aura:attribute name="showScope" type="Boolean" default="false" />
+<aura:attribute name="alternativeText" type="String" default="" />
+
+<aura:attribute name="fieldSearchModalClass" type="String" default="slds-hide" />
+<aura:attribute name="childObjectSearchModalClass" type="String" default="slds-hide" />
+
+<aura:attribute name="objectVariableCache" type="List" />
+<aura:attribute name="ruleWrapperList" type="List" />
+
+<aura:attribute name="isLightning" type="Boolean" />
+
+<aura:attribute name="defaultWarningMsg" type="String" default="{!$Label.c.NEO_RE_Check_Page_Msg}" />
+<aura:attribute name="showListMessage" type="Boolean" default="false" />
+<aura:attribute name="listMessage" type="String" default="{!$Label.c.NEO_RE_List_Message}" />
+
+<!-- Success -->
+<aura:if isTrue="{!v.showSuccess}">
+<div class="slds-notify_container slds-is-absolute">
+    <div class="slds-notify slds-notify_toast slds-theme_success" role="alert">
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Success}</span>
+        <span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top" title="{!v.alternativeText}">
+            <lightning:icon iconName="utility:success" alternativeText="{!$Label.c.NEO_RE_Success}" size="small" variant="inverse" />
+        </span>
+        <div class="slds-notify__content">
+            <h2 class="slds-text-heading_small ">{!v.alternativeText}</h2>
+        </div>
+        <div class="slds-notify__close">
+            <lightning:buttonIcon iconName="utility:close" alternativeText="{!$Label.c.NEO_RE_Close}" size="large" variant="bare-inverse" onclick="{!c.jsCloseAlert}" />
+        </div>
+    </div>
+</div>
+</aura:if>
+
+<!-- Warning -->
+<aura:if isTrue="{!v.showWarning}">
+<div class="slds-notify_container slds-is-absolute">
+    <div class="slds-notify slds-notify_toast slds-theme_warning" role="alert">
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Warning}</span>
+        <span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top" title="{!v.alternativeText}">
+            <lightning:icon iconName="utility:warning" alternativeText="{!$Label.c.NEO_RE_Warning}" size="small" variant="inverse" />
+        </span>
+        <div class="slds-notify__content">
+            <h2 class="slds-text-heading_small ">{!v.alternativeText}</h2>
+        </div>
+        <div class="slds-notify__close">
+            <lightning:buttonIcon iconName="utility:close" alternativeText="{!$Label.c.NEO_RE_Close}" size="large" variant="bare-inverse" onclick="{!c.jsCloseAlert}" />
+        </div>
+    </div>
+</div>
+</aura:if>
+
+<!-- Error -->
+<aura:if isTrue="{!v.showError}">
+<div class="slds-notify_container slds-is-absolute">
+    <div class="slds-notify slds-notify_toast slds-theme_error" role="alert">
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Error}</span>
+        <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top" title="{!v.alternativeText}">
+            <lightning:icon iconName="utility:error" alternativeText="{!$Label.c.NEO_RE_Error}" size="small" variant="inverse" />
+        </span>
+        <div class="slds-notify__content">
+            <h2 class="slds-text-heading_small ">{!v.alternativeText}</h2>
+        </div>
+        <div class="slds-notify__close">
+            <lightning:buttonIcon iconName="utility:close" alternativeText="{!$Label.c.NEO_RE_Close}" size="large" variant="bare-inverse" onclick="{!c.jsCloseAlert}" />
+        </div>
+    </div>
+</div>
+</aura:if>
+
+<aura:if isTrue="{!v.showScope}">
+<div class="slds-scope">
+	<!-- Header -->
+    <div class="slds-page-header">
+    <div class="slds-grid">
+      <div class="slds-col slds-has-flexi-truncate">
+            <div class="slds-media slds-no-space slds-grow"> 
+                <div class="slds-media__figure">
+                <lightning:icon iconName="standard:event" alternativeText="Event" />
+                </div>
+
+                <div class="slds-media__body">
+                <nav>
+                <ol class="slds-breadcrumb slds-line-height_reset">
+                <aura:if isTrue="{!empty(v.variableObj.Id)}">
+                    <li class="slds-breadcrumb__item"><span>{!$Label.c.NEO_RE_New}</span></li>
+                </aura:if>
+                <aura:if isTrue="{!!empty(v.variableObj.Id)}">
+                    <li class="slds-breadcrumb__item"><span>{!v.variableObj.Name}</span></li>
+                </aura:if>
+                </ol>
+                </nav>
+
+                <h1 class="slds-page-header__title slds-p-right_x-small">
+                <button class="slds-button slds-button_reset slds-type-focus slds-truncate" aria-haspopup="true" title="">
+                    <span class="slds-grid slds-has-flexi-truncate slds-grid_vertical-align-center">
+                    <span class="slds-truncate" title="{!$Label.c.NEO_RE_Rule_Variable_Definition}"><span>{!$Label.c.NEO_RE_Rule_Variable_Definition}</span></span>
+                    </span>
+                </button>
+                </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-col slds-align_absolute-center">
+        </div>
+
+        <!-- Button Bar -->
+        <div class="slds-col slds-no-flex slds-grid slds-align-top slds-p-bottom_xx-small">
+            <aura:if isTrue="{!v.variableObj.RecordType.DeveloperName != 'NEO_Field_Variable'}">
+            <div class="slds-button-group" role="group">
+                <lightning:button variant="brand" label="{!$Label.c.NEO_RE_Save}" title="{!$Label.c.NEO_RE_Save}" onclick="{!c.jsSave}" />
+                <lightning:button label="{!$Label.c.NEO_RE_Cancel}" title="{!$Label.c.NEO_RE_Cancel}" onclick="{!c.jsCancel}" />
+            </div>
+            </aura:if>
+
+            <aura:if isTrue="{!v.variableObj.RecordType.DeveloperName == 'NEO_Field_Variable'}">
+            <div class="slds-button-group" role="group">
+                <lightning:button variant="brand" label="Edit" title="Edit" onclick="{!c.jsEdit}" />
+                <lightning:button label="{!$Label.c.NEO_RE_Cancel}" title="{!$Label.c.NEO_RE_Cancel}" onclick="{!c.jsCancel}" />
+            </div>
+            </aura:if>
+        </div>
+    </div>
+    </div>
+
+    <!-- Business Basic Information -->
+    <div class="slds-section slds-is-open slds-p-bottom_small">
+    <h3 class="slds-section__title slds-theme_shade">
+    <span class="slds-icon_container slds-icon-utility-chevronright slds-p-left_x-small">
+        <lightning:icon iconName="utility:chevronright" alternativeText="{!$Label.c.NEO_RE_Basic_Information}" size="xx-small" />
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Basic_Information}</span>
+    </span>
+    <span class="slds-truncate slds-p-horizontal_xx-small" title="{!$Label.c.NEO_RE_Basic_Information}">{!$Label.c.NEO_RE_Basic_Information}</span>
+    </h3>
+    <div aria-hidden="false" class="slds-section__content">
+	    <!-- Code goes here -->
+        <aura:if isTrue="{!v.variableObj.RecordType.DeveloperName != 'NEO_Field_Variable'}">
+	    <div class="slds-grid slds-wrap slds-gutters_x-large">
+	    	<div class="slds-col slds-size_1-of-2">
+	    		<lightning:select aura:id="NEO_variable_form_item" label="{!$Label.c.NEO_RE_Select_Master_Object}" value="{!v.variableObj.Variable_API_Name__c}" required="true" onchange="{!c.jsChangeObjectType}">
+	            <option value="">&nbsp;</option>
+	            <aura:iteration items="{!v.variableWrapperList}" var="row">
+	                <option value="{!row.variableObj.Variable_API_Name__c}">{!row.variableObj.Variable_API_Name__c + ' [' + row.variableObj.Variable_Label__c + ']'}</option>
+	            </aura:iteration>
+	            </lightning:select>
+	        </div>
+
+	        <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.RecordTypeId}</label>
+                <div class="slds-form-element__control">
+                    {!v.variableObj.RecordType.Name}
+                </div>
+	        </div>
+
+	        <div class="slds-col slds-size_1-of-2">
+	        	<label class="slds-form-element__label">{!v.labelMaps.Variable_Label__c}</label>
+	            <div class="slds-form-element__control">
+	                {!v.variableObj.Variable_Label__c}
+	            </div>
+		    </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.Is_Master_Object__c}</label>
+                <div class="slds-form-element__control">
+                    <lightning:input aura:id="NEO_variable_form_item" type="checkbox" checked="{!v.variableObj.Is_Master_Object__c}" />
+                </div>
+            </div>
+
+	        <div class="slds-col slds-size_1-of-2">
+	        	<label class="slds-form-element__label">{!v.labelMaps.Variable_API_Name__c}</label>
+	            <div class="slds-form-element__control">
+	            	{!v.variableObj.Variable_API_Name__c}
+	            </div>
+		    </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.NEO_Active__c}</label>
+                <div class="slds-form-element__control">
+                    <lightning:input aura:id="NEO_variable_form_item" type="checkbox" checked="{!v.variableObj.NEO_Active__c}" />
+                </div>
+            </div>
+	    </div>
+        </aura:if>
+
+        <aura:if isTrue="{!v.variableObj.RecordType.DeveloperName == 'NEO_Field_Variable'}">
+        <div class="slds-grid slds-wrap slds-gutters_x-large">
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.Parent_Variable__c}</label>
+                <div class="slds-form-element__control">
+                    {!v.variableObj.Parent_Variable__r.Variable_Label__c + ' [' + v.variableObj.Parent_Variable__r.Variable_API_Name__c + ']'}
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.RecordTypeId}</label>
+                <div class="slds-form-element__control">
+                    {!v.variableObj.RecordType.Name}
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.Variable_Label__c}</label>
+                <div class="slds-form-element__control">
+                    {!v.variableObj.Variable_Label__c}
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.NEO_Value_Key__c}</label>
+                <div class="slds-form-element__control">
+                    {!v.variableObj.NEO_Value_Key__c}
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.Variable_API_Name__c}</label>
+                <div class="slds-form-element__control">
+                    {!v.variableObj.Variable_API_Name__c}
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.NEO_Data_Source__c}</label>
+                <div class="slds-form-element__control">
+                    {!v.variableObj.NEO_Data_Source__c}
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.NEO_Variable_Data_Type__c}</label>
+                <div class="slds-form-element__control">
+                    {!v.variableObj.NEO_Variable_Data_Type__c}
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <label class="slds-form-element__label">{!v.labelMaps.NEO_Active__c}</label>
+                <div class="slds-form-element__control">
+                    {!v.variableObj.NEO_Active__c}
+                </div>
+            </div>
+            
+        </div>
+        </aura:if>
+    </div>
+	</div>
+
+	<!-- System Information -->
+    <aura:if isTrue="{!!empty(v.variableObj.Id)}">
+	<div class="slds-section slds-is-open slds-p-bottom_small">
+    <h3 class="slds-section__title slds-theme_shade">
+    <span class="slds-icon_container slds-icon-utility-chevronright slds-p-left_x-small">
+        <lightning:icon iconName="utility:chevronright" alternativeText="{!$Label.c.NEO_RE_Basic_Information}" size="xx-small" />
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_System_Information}</span>
+    </span>
+    <span class="slds-truncate slds-p-horizontal_xx-small" title="{!$Label.c.NEO_RE_System_Information}">{!$Label.c.NEO_RE_System_Information}</span>
+    </h3>
+    <div aria-hidden="false" class="slds-section__content">
+	    <!-- Code goes here -->
+	    <div class="slds-grid slds-wrap slds-gutters_x-large">
+	    	<div class="slds-col slds-size_1-of-4">
+	        	<label class="slds-form-element__label">{!v.labelMaps.CreatedById}</label>
+	            <div class="slds-form-element__control">
+	            	{!v.variableWrapperObj.strCreatedByName}
+	            </div>
+		    </div>
+		   <div class="slds-col slds-size_1-of-4">
+	        	<label class="slds-form-element__label">{!v.labelMaps.LastModifiedById}</label>
+	            <div class="slds-form-element__control">
+	            	{!v.variableWrapperObj.strLastModifiedByName}
+	            </div>
+		    </div>
+
+	    	<div class="slds-col slds-size_1-of-4">
+	    		<label class="slds-form-element__label">{!v.labelMaps.CreatedDate}</label>
+	            <div class="slds-form-element__control">
+	            	{!v.variableWrapperObj.strCreatedDate}
+	            </div>
+	        </div>
+	        
+	    	<div class="slds-col slds-size_1-of-4">
+	    		<label class="slds-form-element__label">{!v.labelMaps.LastModifiedDate}</label>
+	            <div class="slds-form-element__control">
+	            	{!v.variableWrapperObj.strLastModifiedDate}
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	</div>
+    </aura:if>
+
+	<!-- Child object list -->
+    <aura:if isTrue="{!v.oldVariableObj.Is_Master_Object__c &amp;&amp; v.variableObj.RecordType.DeveloperName != 'NEO_Field_Variable'}">
+    <div class="slds-section slds-is-open slds-p-bottom_small">
+    <h3 class="slds-section__title slds-theme_shade">
+    <span class="slds-icon_container slds-icon-utility-chevronright slds-p-left_x-small">
+        <lightning:icon iconName="utility:chevronright" alternativeText="{!$Label.c.NEO_RE_Selected_Related_Objects_List}" size="xx-small" />
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Selected_Related_Objects_List}</span>
+    </span>
+    <span class="slds-truncate slds-p-horizontal_xx-small" title="{!$Label.c.NEO_RE_Selected_Related_Objects_List}">{!$Label.c.NEO_RE_Selected_Related_Objects_List}</span>
+    </h3>
+    <div aria-hidden="false" class="slds-section__content">
+        <!-- Code goes here -->
+    	<div class="slds-expression__buttons slds-m-top--none slds-p-bottom--x-small">
+            <lightning:button label="{!$Label.c.NEO_RE_Add_Related_Objects}" iconName="utility:add" iconPosition="left" variant="brand" onclick="{!c.jsShowChildObjectSearchModal}" />
+        </div>
+
+    	<table class="slds-table slds-table--bordered slds-table--cell-buffer">
+    	<thead>
+    	<tr class="slds-text-title--caps">
+			<th scope="col">
+				<div class="slds-truncate" title="{!$Label.c.NEO_RE_Action}">{!$Label.c.NEO_RE_Action}</div>
+		    </th>
+		    <th scope="col">
+		    	<div class="slds-truncate" title="{!v.variableAssociationLabelMaps.NEO_Child_Object_Label__c}">{!v.variableAssociationLabelMaps.NEO_Child_Object_Label__c}</div>
+		    </th>
+		    <th scope="col">
+		    	<div class="slds-truncate" title="{!v.variableAssociationLabelMaps.NEO_Lookup_Name__c}">{!v.variableAssociationLabelMaps.NEO_Lookup_Name__c}</div>
+		    </th>
+		    <th scope="col">
+		    	<div class="slds-truncate" title="{!v.variableAssociationLabelMaps.NEO_Relationship_Name__c}">{!v.variableAssociationLabelMaps.NEO_Relationship_Name__c}</div>
+		    </th>
+		</tr>
+    	</thead>
+    	<tbody>
+        <aura:if isTrue="{!v.variableAssociationWrapperList.length > 0}">
+    	<aura:iteration items="{!v.variableAssociationWrapperList}" var="row" indexVar="rowIndex">
+    	<tr class="slds-hint-parent">
+    		<th scope="row" data-label="{!$Label.c.NEO_RE_Action}">
+	        	<a href="javascript:void(0);" data-row-index="{!rowIndex}" onclick="{!c.jsDeleteVariableAssociation}">{!$Label.c.NEO_RE_Delete}</a>
+	      	</th>
+	      	<td data-label="{!v.variableAssociationLabelMaps.NEO_Child_Object_Label__c}">
+	        	<div class="slds-truncate" title="{!row.strChildLabel + ' [' + row.strChildApiName + ']'}">{!row.strChildLabel + ' [' + row.strChildApiName + ']'}</div>
+	      	</td>
+	      	<td data-label="{!v.variableAssociationLabelMaps.NEO_Lookup_Name__c}">
+	        	<div class="slds-truncate" title="{!row.variableAssociationObj.NEO_Lookup_Name__c}">{!row.variableAssociationObj.NEO_Lookup_Name__c}</div>
+	      	</td>
+	      	<td data-label="{!v.variableAssociationLabelMaps.NEO_Relationship_Name__c}">
+	        	<div class="slds-truncate" title="{!row.variableAssociationObj.NEO_Relationship_Name__c}">{!row.variableAssociationObj.NEO_Relationship_Name__c}</div>
+	      	</td>
+	    </tr>
+		</aura:iteration>
+        <aura:set attribute="else">
+        <tr class="slds-hint-parent">
+            <th class="slds-text-color_error slds-text-align_center slds-text-heading_small" scope="row" colspan="4">
+                <div class="slds-truncate" title="{!$Label.c.NEO_RE_No_Records_Matched}">{!$Label.c.NEO_RE_No_Records_Matched}</div>
+            </th>
+        </tr>
+        </aura:set>
+        </aura:if>
+
+    	</tbody>
+    	</table>
+    </div>
+	</div>
+    </aura:if>
+
+	<!-- Fields list -->
+    <aura:if isTrue="{!v.variableObj.RecordType.DeveloperName != 'NEO_Field_Variable'}">
+    <div class="slds-section slds-is-open slds-p-bottom_small">
+    <h3 class="slds-section__title slds-theme_shade">
+    <span class="slds-icon_container slds-icon-utility-chevronright slds-p-left_x-small">
+        <lightning:icon iconName="utility:chevronright" alternativeText="{!$Label.c.NEO_RE_Selected_Fields_List}" size="xx-small" />
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Selected_Fields_List}</span>
+    </span>
+    <span class="slds-truncate slds-p-horizontal_xx-small" title="{!$Label.c.NEO_RE_Selected_Fields_List}">{!$Label.c.NEO_RE_Selected_Fields_List}</span>
+    </h3>
+    <div aria-hidden="false" class="slds-section__content">
+        <!-- Code goes here -->
+    	<div class="slds-expression__buttons slds-m-top--none slds-p-bottom--x-small">
+            <lightning:button label="{!$Label.c.NEO_RE_Add_Fields}" iconName="utility:add" iconPosition="left"  variant="brand" onclick="{!c.jsShowFieldSearchModal}" />
+        </div>
+
+    	<table class="slds-table slds-table--bordered slds-table--cell-buffer">
+    	<thead>
+    	<tr class="slds-text-title--caps">
+			<th scope="col">
+				<div class="slds-truncate" title="{!$Label.c.NEO_RE_Action}">{!$Label.c.NEO_RE_Action}</div>
+		    </th>
+		    <th scope="col">
+		    	<div class="slds-truncate" title="{!v.labelMaps.Variable_Label__c}">{!v.labelMaps.Variable_Label__c}</div>
+		    </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.labelMaps.NEO_Variable_Data_Type__c}">{!v.labelMaps.NEO_Variable_Data_Type__c}</div>
+            </th>
+		    <th scope="col">
+		    	<div class="slds-truncate" title="{!v.labelMaps.NEO_Value_Key__c}">{!v.labelMaps.NEO_Value_Key__c}</div>
+		    </th>
+		    <th scope="col">
+		    	<div class="slds-truncate" title="{!v.labelMaps.NEO_Data_Source__c}">{!v.labelMaps.NEO_Data_Source__c}</div>
+		    </th>
+		</tr>
+    	</thead>
+    	<tbody>
+        <aura:if isTrue="{!v.fieldsWrapperList.length > 0}">
+    	<aura:iteration items="{!v.fieldsWrapperList}" var="row" indexVar="rowIndex">
+    	<tr class="slds-hint-parent">
+    		<th scope="row" data-label="{!$Label.c.NEO_RE_Action}">
+	        	<a href="javascript:void(0);" data-row-index="{!rowIndex}" onclick="{!c.jsDeleteFields}">{!$Label.c.NEO_RE_Delete}</a>
+	      	</th>
+	      	<td data-label="{!v.labelMaps.Variable_Label__c}">
+	        	<div class="slds-truncate" title="{!row.strShowName}">{!row.strShowName}</div>
+	      	</td>
+	      	<td data-label="{!v.labelMaps.NEO_Variable_Data_Type__c}">
+	        	<div class="slds-truncate" title="{!row.variableObj.NEO_Variable_Data_Type__c}">{!row.variableObj.NEO_Variable_Data_Type__c}</div>
+	      	</td>
+	      	<td data-label="{!v.labelMaps.NEO_Value_Key__c}" class="slds-p-top_none">
+                <div class="slds-truncate" title="{!row.variableObj.NEO_Value_Key__c}">
+	        	<lightning:select value="{!row.variableObj.NEO_Value_Key__c}" onchange="{!c.jsChangeValueKey}">
+	            <option value="">&nbsp;</option>
+	            <aura:iteration items="{!row.keyValueOptions}" var="r">
+	                <option value="{!r.value}">{!r.label}</option>
+	            </aura:iteration>
+	            </lightning:select>
+                </div>
+	      	</td>
+	      	<td data-label="{!v.labelMaps.NEO_Data_Source__c}" class="slds-p-top_none">
+                <div class="slds-truncate" title="{!row.variableObj.NEO_Data_Source__c}">
+	        	<lightning:select aura:id="NEO_variable_form_item" label="" value="{!row.variableObj.NEO_Data_Source__c}" disabled="{!empty(row.variableObj.NEO_Value_Key__c)}" required="{!!empty(row.variableObj.NEO_Value_Key__c)}">
+                <option value="">&nbsp;</option>
+	            <aura:iteration items="{!row.dataSourceOptions}" var="r">
+	                <option value="{!r.value}">{!r.label}</option>
+	            </aura:iteration>
+	            </lightning:select>
+                </div>
+	      	</td>
+	    </tr>
+		</aura:iteration>
+        <aura:set attribute="else">
+        <tr class="slds-hint-parent">
+            <th class="slds-text-color_error slds-text-align_center slds-text-heading_small" scope="row" colspan="5">
+                <div class="slds-truncate" title="{!$Label.c.NEO_RE_No_Records_Matched}">{!$Label.c.NEO_RE_No_Records_Matched}</div>
+            </th>
+        </tr>
+        </aura:set>
+        </aura:if>
+
+    	</tbody>
+    	</table>
+    </div>
+	</div>
+    </aura:if>
+
+    <!-- Rules list -->
+    <aura:if isTrue="{!v.variableObj.RecordType.DeveloperName != 'NEO_Field_Variable' &amp;&amp; v.oldVariableObj.Is_Master_Object__c}">
+    <div class="slds-section slds-is-open slds-p-bottom_small">
+    <h3 class="slds-section__title slds-theme_shade">
+    <span class="slds-icon_container slds-icon-utility-chevronright slds-p-left_x-small">
+        <lightning:icon iconName="utility:chevronright" alternativeText="{!$Label.c.NEO_RE_Related_Rules_List}" size="xx-small" />
+        <span class="slds-assistive-text">{!$Label.c.NEO_RE_Related_Rules_List}</span>
+    </span>
+    <span class="slds-truncate slds-p-horizontal_xx-small" title="{!$Label.c.NEO_RE_Basic_Information}">{!$Label.c.NEO_RE_Related_Rules_List}</span>
+    </h3>
+    <div aria-hidden="false" class="slds-section__content">
+        <!-- Code goes here -->
+        <div class="slds-expression__buttons slds-m-top--none slds-p-bottom--x-small">
+            <lightning:button label="{!$Label.c.NEO_RE_Add_Rules}" iconName="utility:add" iconPosition="left"  variant="brand" onclick="{!c.jsCreateRule}" />
+        </div>
+
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+        <thead>
+        <tr class="slds-text-title--caps">
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.ruleLabelMaps.Name}">{!v.ruleLabelMaps.Name}</div>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.ruleLabelMaps.NEO_Rule_Name__c}">{!v.ruleLabelMaps.NEO_Rule_Name__c}</div>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.ruleLabelMaps.NEO_Active__c}">{!v.ruleLabelMaps.NEO_Active__c}</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <aura:if isTrue="{!v.ruleWrapperList.length > 0}">
+        <aura:iteration items="{!v.ruleWrapperList}" var="row" indexVar="rowIndex">
+        <tr class="slds-hint-parent">
+            
+            <td data-label="{!v.ruleLabelMaps.NEO_Rule_Name__c}">
+                <div class="slds-truncate" title="{!row.ruleObj.Name}">
+                <aura:if isTrue="{!v.isLightning}">
+                <a href="javascript:void(0);" data-row-index="{!row.ruleObj.Id}" title="{!row.ruleObj.Name}" onclick="{!c.jsViewRule}">{!row.ruleObj.Name}</a>
+                </aura:if>
+                <aura:if isTrue="{!!v.isLightning}">
+                <a href="{!'/' + row.ruleObj.Id}" data-row-index="{!rowIndex}" title="{!row.ruleObj.Name}" target="_blank">{!row.ruleObj.Name}</a>
+                </aura:if>
+                </div>
+            </td>
+            <td data-label="{!v.ruleLabelMaps.Alert_Message__c}">
+                <div class="slds-truncate" title="{!row.ruleObj.NEO_Rule_Name__c}">{!row.ruleObj.NEO_Rule_Name__c}</div>
+                <div class="slds-truncate" title="{!row.ruleObj.Alert_Message__c}">{!row.ruleObj.Alert_Message__c}</div>
+            </td>
+            <td data-label="{!v.ruleLabelMaps.NEO_Active__c}">
+                <lightning:input type="checkbox" checked="{!row.ruleObj.NEO_Active__c}" disabled="true" />
+            </td>
+        </tr>
+        </aura:iteration>
+        <aura:set attribute="else">
+        <tr class="slds-hint-parent">
+            <th class="slds-text-color_error slds-text-align_center slds-text-heading_small" scope="row" colspan="3">
+                <div class="slds-truncate" title="{!$Label.c.NEO_RE_No_Records_Matched}">{!$Label.c.NEO_RE_No_Records_Matched}</div>
+            </th>
+        </tr>
+        </aura:set>
+        </aura:if>
+
+        </tbody>
+        </table>
+    </div>
+    </div>
+    </aura:if>
+</div>
+</aura:if>
+
+<!-- Search relationship child object window start -->
+<div id="NEO_modal_field_binding" class="{!v.childObjectSearchModalClass}">
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large"
+        aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+    <div class="slds-modal__container">
+    <header class="slds-modal__header">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+            title="{!$Label.c.NEO_Close_Label}" onclick="{!c.jsCloseChildObjectSearchModal}">
+        <lightning:buttonIcon iconName="utility:close" variant="bare-inverse" alternativeText="{!$Label.c.NEO_Close_Label}"
+            size="large" />
+        <span class="slds-assistive-text">{!$Label.c.NEO_Close_Label}</span>
+        </button>
+        <h2 class="slds-modal__title slds-hyphenate">{!$Label.c.NEO_RE_Add_Related_Objects}</h2>
+        <p>
+        <aura:if isTrue="{!v.showListLoading}">
+            <div class="slds-text-color_error slds-text-align_center slds-text-heading_small slds-p-vertical_small slds-align_absolute-center">
+            <lightning:icon iconName="utility:refresh" alternativeText="{!$Label.c.NEO_RE_List_Loading_Label}" title="{!$Label.c.NEO_RE_List_Loading_Label}"
+        variant="error" size="x-small" />&nbsp;{!$Label.c.NEO_RE_List_Loading_Label}
+        </div>
+        </aura:if>
+        </p>
+        <p>
+        <aura:if isTrue="{!v.showListMessage}">
+            <div class="slds-text-color_error slds-text-align_center slds-text-heading_small slds-p-vertical_small slds-align_absolute-center">
+            <lightning:icon iconName="utility:warning" alternativeText="{!v.listMessage}" title="{!v.listMessage}"
+        variant="error" size="x-small" />&nbsp;{!v.listMessage}
+        </div>
+        </aura:if>
+        </p>
+    </header>
+    <div class="slds-modal__content slds-p-vertical_small slds-p-horizontal_small">
+        <!-- Search result -->
+        <div class="slds-section slds-is-open slds-p-bottom_small">
+        <h3 class="slds-section__title slds-theme_shade">
+        <span class="slds-icon_container slds-icon-utility-chevronright slds-p-left_x-small">
+            <lightning:icon iconName="utility:chevronright" alternativeText="{!$Label.c.NEO_RE_Available_Related_Objects_List}" size="xx-small" />
+            <span class="slds-assistive-text">{!$Label.c.NEO_RE_Available_Related_Objects_List}</span>
+        </span>
+        <span class="slds-truncate slds-p-horizontal_xx-small" title="{!$Label.c.NEO_RE_Available_Related_Objects_List}">{!$Label.c.NEO_RE_Available_Related_Objects_List}</span>
+        </h3>
+        <div aria-hidden="false" class="slds-section__content">
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+        <tr class="slds-line-height_reset">
+            <th scope="col">
+                <div class="slds-truncate" title="{!$Label.c.NEO_Select_Label}">{!$Label.c.NEO_Select_Label}</div>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.variableAssociationLabelMaps.NEO_Child_Object_Label__c}">{!v.variableAssociationLabelMaps.NEO_Child_Object_Label__c}</div>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.variableAssociationLabelMaps.NEO_Lookup_Name__c}">{!v.variableAssociationLabelMaps.NEO_Lookup_Name__c}</div>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.variableAssociationLabelMaps.NEO_Relationship_Name__c}">{!v.variableAssociationLabelMaps.NEO_Relationship_Name__c}</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <aura:if isTrue="{!v.allVariableAssociationWrapperList.length > 0}">
+        <aura:iteration items="{!v.allVariableAssociationWrapperList}" var="r" indexVar="rowIndex">
+        <tr class="slds-hint-parent">
+            <th data-label="#" scope="row">
+                <lightning:input type="checkbox" checked="{!r.isSelected}" />
+            </th>
+            <th scope="row">
+                <div class="slds-truncate" title="{!r.strChildLabel + ' [' + r.strChildApiName + ']'}">{!r.strChildLabel + ' [' + r.strChildApiName + ']'}</div>
+            </th>
+            <th scope="row">
+                <div class="slds-truncate" title="{!r.variableAssociationObj.NEO_Lookup_Name__c}">{!r.variableAssociationObj.NEO_Lookup_Name__c}</div>
+            </th>
+            <th scope="row">
+                <div class="slds-truncate" title="{!r.variableAssociationObj.NEO_Relationship_Name__c}">{!r.variableAssociationObj.NEO_Relationship_Name__c}</div>
+            </th>
+        </tr>
+        </aura:iteration>
+        </aura:if>
+
+        <aura:if isTrue="{!!(v.allVariableAssociationWrapperList.length > 0) &amp;&amp; !v.showListLoading}">
+        <tr class="slds-hint-parent">
+            <th class="slds-text-color_error slds-text-align_center slds-text-heading_small" scope="row" colspan="4">
+                <div class="slds-truncate" title="{!$Label.c.NEO_RE_No_Records_Matched}">{!$Label.c.NEO_RE_No_Records_Matched}</div>
+            </th>
+        </tr>
+        </aura:if>
+
+        </tbody>
+        </table>
+
+        </div>
+        </div>
+    </div>
+    <div class="slds-modal__footer">
+        <lightning:button variant="neutral" label="{!$Label.c.NEO_RE_Cancel}" title="{!$Label.c.NEO_RE_Cancel}" onclick="{!c.jsCloseChildObjectSearchModal}" />
+        <lightning:button variant="brand" label="{!$Label.c.NEO_RE_OK}" title="{!$Label.c.NEO_RE_OK}" onclick="{!c.jsAddVariableAssociation}"  disabled="{!v.showListLoading}" />
+    </div>
+    </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</div>
+
+<!-- Search fields window start -->
+<div id="NEO_modal_field_binding" class="{!v.fieldSearchModalClass}">
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large"
+        aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" style="width: 100%;">
+    <div class="slds-modal__container">
+    <header class="slds-modal__header">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+            title="{!$Label.c.NEO_Close_Label}" onclick="{!c.jsCloseFieldSearchModal}">
+        <lightning:buttonIcon iconName="utility:close" variant="bare-inverse" alternativeText="{!$Label.c.NEO_Close_Label}"
+            size="large" />
+        <span class="slds-assistive-text">{!$Label.c.NEO_Close_Label}</span>
+        </button>
+        <h2 class="slds-modal__title slds-hyphenate">{!$Label.c.NEO_RE_Add_Fields}</h2>
+        <p class="slds-m-top--x-small">
+        	<nav role="navigation" aria-label="Breadcrumbs">
+        	<ol class="slds-breadcrumb slds-list--horizontal">
+            <aura:iteration items="{!v.stepWrapperList}" var="sw" indexVar="rowIndex">
+			    <li class="slds-breadcrumb__item slds-text-title--caps"><a href="javascript:void(0);" data-row-index="{!rowIndex}" onclick="{!c.jsSwitchStep}">{!sw.strObjectTypeLabel}</a></li>
+            </aura:iteration>
+			</ol>
+			</nav>
+        </p>
+        <p>
+        <aura:if isTrue="{!v.showListLoading}">
+        <div class="slds-text-color_error slds-text-align_center slds-text-heading_small slds-align_absolute-center">
+            <lightning:icon iconName="utility:refresh" alternativeText="{!$Label.c.NEO_RE_List_Loading_Label}" title="{!$Label.c.NEO_RE_List_Loading_Label}"
+        variant="error" size="x-small" />&nbsp;{!$Label.c.NEO_RE_List_Loading_Label}
+        </div>
+        </aura:if>
+        </p>
+        <p>
+        <aura:if isTrue="{!v.showListMessage}">
+            <div class="slds-text-color_error slds-text-align_center slds-text-heading_small slds-p-vertical_small slds-align_absolute-center">
+            <lightning:icon iconName="utility:warning" alternativeText="{!v.listMessage}" title="{!v.listMessage}"
+        variant="warning" size="x-small" />&nbsp;{!v.listMessage}
+        </div>
+        </aura:if>
+        </p>
+    </header>
+    <div class="slds-modal__content slds-p-vertical_small slds-p-horizontal_small slds-scrollable">
+        <!-- Search result -->
+        <div class="slds-section slds-is-open slds-p-bottom_small">
+        <h3 class="slds-section__title slds-theme_shade">
+        <span class="slds-icon_container slds-icon-utility-chevronright slds-p-left_x-small">
+            <lightning:icon iconName="utility:chevronright" alternativeText="{!$Label.c.NEO_Search_Results_Label}" size="xx-small" />
+            <span class="slds-assistive-text">{!$Label.c.NEO_RE_Available_Fields_List}</span>
+        </span>
+        <span class="slds-truncate slds-p-horizontal_xx-small" title="{!$Label.c.NEO_RE_Available_Fields_List}">{!$Label.c.NEO_RE_Available_Fields_List}</span>
+        </h3>
+        <div aria-hidden="false" class="slds-section__content">
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+        <tr class="slds-line-height_reset">
+            <th scope="col">
+                <div class="slds-truncate" title="{!$Label.c.NEO_Select_Label}">{!$Label.c.NEO_Select_Label}</div>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.labelMaps.Variable_Label__c}">{!v.labelMaps.Variable_Label__c}</div>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.labelMaps.NEO_Variable_Data_Type__c}">{!v.labelMaps.NEO_Variable_Data_Type__c}</div>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.labelMaps.NEO_Value_Key__c}">{!v.labelMaps.NEO_Value_Key__c}</div>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate" title="{!v.labelMaps.NEO_Data_Source__c}">{!v.labelMaps.NEO_Data_Source__c}</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <aura:if isTrue="{!v.allFieldsWrapperList.length > 0 &amp;&amp; !v.showListLoading}">
+        <aura:iteration items="{!v.allFieldsWrapperList}" var="r" indexVar="rowIndex">
+        <tr class="slds-hint-parent">
+            <th data-label="#" scope="row">
+                <aura:if isTrue="{!r.showSelectedCheckbox}">
+                <lightning:input type="checkbox" checked="{!r.isSelected}" />
+                </aura:if>
+            </th>
+            <th scope="row">
+            	<aura:if isTrue="{!r.isLookup &amp;&amp; v.stepWrapperList.length &lt; 4}">
+                <div class="slds-truncate" title="{!r.strShowName + ' &gt;'}">
+                    <a href="javascript:void(0);" data-row-index="{!r.variableObj.Variable_API_Name__c}" onclick="{!c.jsGotoChildObject}">{!r.strShowName + ' &gt;'}</a>
+                </div>
+                <aura:set attribute="else">
+                    <div class="slds-truncate" title="{!r.strShowName}">{!r.strShowName}</div>
+                </aura:set>
+            	</aura:if>
+            </th>
+            <th scope="row">
+                <div class="slds-truncate" title="{!r.variableObj.NEO_Variable_Data_Type__c}">{!r.variableObj.NEO_Variable_Data_Type__c}</div>
+            </th>
+            <td scope="row">
+	        	<lightning:select value="{!r.variableObj.NEO_Value_Key__c}" onchange="{!c.jsAllChangeValueKey}">
+	            <option value="">&nbsp;</option>
+	            <aura:iteration items="{!r.keyValueOptions}" var="row">
+	                <option value="{!row.value}">{!row.label}</option>
+	            </aura:iteration>
+	            </lightning:select>
+	      	</td>
+	      	<td scope="row">
+	        	<lightning:select aura:id="NEO_variable_form_item" value="{!r.variableObj.NEO_Data_Source__c}" disabled="{!empty(r.variableObj.NEO_Value_Key__c)}">
+	            <option value="">&nbsp;</option>
+	            <aura:iteration items="{!r.dataSourceOptions}" var="row">
+	                <option value="{!row.value}">{!row.label}</option>
+	            </aura:iteration>
+	            </lightning:select>
+	      	</td>
+        </tr>
+        </aura:iteration>
+        </aura:if>
+
+        <aura:if isTrue="{!!(v.allFieldsWrapperList.length > 0) &amp;&amp; !v.showListLoading}">
+        <tr class="slds-hint-parent">
+            <th class="slds-text-color_error slds-text-align_center slds-text-heading_small" scope="row" colspan="5">
+                <div class="slds-truncate" title="{!$Label.c.NEO_RE_No_Records_Matched}">{!$Label.c.NEO_RE_No_Records_Matched}</div>
+            </th>
+        </tr>
+        </aura:if>
+
+        </tbody>
+        </table>
+        </div>
+        </div>
+    </div>
+	<div class="slds-modal__footer">
+		<lightning:button variant="neutral" label="{!$Label.c.NEO_RE_Cancel}" title="{!$Label.c.NEO_RE_Cancel}" onclick="{!c.jsCloseFieldSearchModal}" />
+		<lightning:button variant="brand" label="{!$Label.c.NEO_RE_OK}" title="{!$Label.c.NEO_RE_OK}" onclick="{!c.jsAddFields}" disabled="{!v.showListLoading}" />
+	</div>
+    </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</div>
+</aura:component>

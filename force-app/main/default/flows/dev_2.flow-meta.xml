@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <choices>
+        <name>c_05391614_8aac_4b2f_8009_c00b06d6c731</name>
+        <choiceText>E.Use the component to ensure the data formats correctly</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>E.Use the component to ensure the data formats correctly</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_1834bdc4_c106_4ceb_be6e_df6b65169852</name>
+        <choiceText>D Create a process using Process Builder that executes an action type called &apos;Send Survey Invitation&apos; when the value of the custom field changes.</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>D Create a process using Process Builder that executes an action type called &apos;Send Survey Invitation&apos; when the value of the custom field changes.</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_1b0381b1_2909_4ad7_8f20_7357d8129a6c</name>
+        <choiceText>B Create an Apex trigger that sends a survey invitation to the contact when the value of the custom field changes.</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>B Create an Apex trigger that sends a survey invitation to the contact when the value of the custom field changes.</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_23aa032e_c3c6_4811_b1e7_46fceb8f5777</name>
+        <choiceText>D.Create separate controllers with the same functionality for each language</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>D.Create separate controllers with the same functionality for each language</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_4a51cb58_0f24_4b55_9fd0_a37517ad938f</name>
+        <choiceText>A.Use custom labels and the appropriate tags to retrieve them on the Visualforce page</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>A.Use custom labels and the appropriate tags to retrieve them on the Visualforce page</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_85801446_59c7_4f9e_8a38_1cf77bc5fc68</name>
+        <choiceText>A Create a flow using Flow Builder to send a survey invitation to the contact automatically when the value of the custom field changes.</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>A Create a flow using Flow Builder to send a survey invitation to the contact automatically when the value of the custom field changes.</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_a2dfbc72_fe0a_469c_8150_b35188183f74</name>
+        <choiceText>C.Create a separate section for each language on the page and use a system variable to decide which language to display</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>C.Create a separate section for each language on the page and use a system variable to decide which language to display</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_c2e7c8e8_02f2_4d22_8648_39abed981a3d</name>
+        <choiceText>B.Store any string literals in an external resource file</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>B.Store any string literals in an external resource file</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_c51cc93e_83d6_44aa_8d6d_29a282080eb8</name>
+        <choiceText>C Create a workflow rule that sends an outbound message to a third-party survey application when the value of the custom field changes.</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>C Create a workflow rule that sends an outbound message to a third-party survey application when the value of the custom field changes.</stringValue>
+        </value>
+    </choices>
+    <interviewLabel>DEV 2</interviewLabel>
+    <label>DEV 2</label>
+    <processMetadataValues>
+        <name>autoProgressEnabled</name>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>hasWelcomePage</name>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>overrideActiveVersion</name>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </processMetadataValues>
+    <processType>Survey</processType>
+    <screens>
+        <name>p_12d7851f_2b0e_405d_a5ca_a33057201a12</name>
+        <label>Page 1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_2a81bdbe_34be_40ee_957e_c0b67dd93d62</name>
+            <choiceReferences>c_4a51cb58_0f24_4b55_9fd0_a37517ad938f</choiceReferences>
+            <choiceReferences>c_c2e7c8e8_02f2_4d22_8648_39abed981a3d</choiceReferences>
+            <choiceReferences>c_a2dfbc72_fe0a_469c_8150_b35188183f74</choiceReferences>
+            <choiceReferences>c_23aa032e_c3c6_4811_b1e7_46fceb8f5777</choiceReferences>
+            <choiceReferences>c_05391614_8aac_4b2f_8009_c00b06d6c731</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;A developer is developing a Visualforce page with a custom controller. The page needs to work in an organization where users have different languages and locales. Which of the following should the developer do to minimize any language dependencies in the code?&lt;/p&gt;</fieldText>
+            <fieldType>MultiSelectCheckboxes</fieldType>
+            <helpText>ABE</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_bb60f367_4741_4444_a424_5b751d544f7a</name>
+            <choiceReferences>c_85801446_59c7_4f9e_8a38_1cf77bc5fc68</choiceReferences>
+            <choiceReferences>c_1b0381b1_2909_4ad7_8f20_7357d8129a6c</choiceReferences>
+            <choiceReferences>c_c51cc93e_83d6_44aa_8d6d_29a282080eb8</choiceReferences>
+            <choiceReferences>c_1834bdc4_c106_4ceb_be6e_df6b65169852</choiceReferences>
+            <dataType>String</dataType>
+            <extensionName>survey:runtimeRadioButton</extensionName>
+            <fieldText>&lt;p&gt;&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;Cosmic Lights uses the standard Contact object to store information about people associated with B2B companies that purchase the products manufactured by the company. A custom object is used to store information about sales orders. When a person associated with a company purchases a product, a custom field on the person&apos;s contact record is updated by a salesperson manually. When this field is updated, a survey should be sent to the person to gather certain information, such as the reason behind the purchase and how their previous purchases influenced the recent purchase decision. What solution should be recommended to meet this requirement?&lt;/p&gt;</fieldText>
+            <fieldType>ComponentChoice</fieldType>
+            <helpText>d</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <pausedText>To pick up where you left off, refresh this page, or open the survey again.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>welcome_page</name>
+        <label>Welcome Page</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>p_12d7851f_2b0e_405d_a5ca_a33057201a12</targetReference>
+        </connector>
+        <fields>
+            <name>welcome_question</name>
+            <extensionName>survey:runtimeWelcome</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>{!welcome_question_lref_tt}</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>welcome_page</startElementReference>
+    <status>Draft</status>
+    <textTemplates>
+        <name>thankYouDescriptionTextTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text></text>
+    </textTemplates>
+    <textTemplates>
+        <name>thankYouLabelTextTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;b&gt;dev 2&lt;/b&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>welcome_question_lref_tt</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;b&gt;Dev2&lt;/b&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>guestUserLang</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>invitationId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>previewMode</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>thankYouDescription</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>{!thankYouDescriptionTextTemplate}</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>thankYouLabel</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>{!thankYouLabelTextTemplate}</stringValue>
+        </value>
+    </variables>
+</Flow>

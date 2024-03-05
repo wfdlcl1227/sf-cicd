@@ -1,0 +1,105 @@
+<aura:component controller="LoginController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!-- REQUIRED SLDS CSS -->
+    <ltng:require styles="/resource/SLDS24/styles/salesforce-lightning-design-system.css"/>
+    <!-- Username and Password -->
+    <aura:attribute name="Username" type="String" />
+    <aura:attribute name="Password" type="String" />
+    <aura:attribute name="ResetUsername" type="String" />
+    <aura:attribute name="mylabel" type="String"/>
+    <aura:attribute name="mylabel1" type="String"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <!--create a component attributs -->
+    <aura:attribute name="Spinner" type="boolean" default="false"/>
+    <aura:attribute name="isVisible" type="boolean" default="true"/>
+    <!--loading spinner start... style=Brand Medium (blue dots)-->
+    <aura:if isTrue="{!v.Spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <!-- Loading spinner end-->
+    <!-- PAGE HEADER -->
+    <lightning:layout class="slds-page-header slds-page-header--object-home">
+        <lightning:layoutItem >
+            <lightning:icon iconName="standard:household" size="large" alternativeText="Login Page"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
+                <h1> <!--<img src="{!$Resource.logo}"/>--></h1>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!-- / PAGE HEADER -->
+    <!-- NEW FORM -->
+    <lightning:layout >
+        <lightning:layoutItem padding="around-small" size="12" class="main-wrapper">
+            <div aria-labelledby="newform">
+                <!-- BOXED AREA -->
+                <fieldset class="slds-box slds-theme--default slds-container--medium">
+                    <legend id="newform" class="slds-text-heading--small
+                                                slds-p-vertical--medium login-heading">
+                    </legend>
+                    <!-- IF Condition -->
+                    <aura:if isTrue="{!v.isVisible}">
+                        <div id="error">
+                            <ui:outputRichText value="{!v.mylabel}"/></div>
+                        <!-- CREATE NEW FORM -->
+                        <form class="slds-form--stacked">
+                            <lightning:input aura:id="FormVal" label="Username"
+                                             name="Username"
+                                             type="email"
+                                             placeholder="Enter your Username"
+                                             value="{!v.Username}"
+                                             required="true" />
+                            <lightning:input aura:id="FormVal" label="Password"
+                                             name="password"
+                                             type="password"
+                                             placeholder="Enter your Password"
+                                             value="{!v.Password}"
+                                             required="true"/>
+                            <lightning:button label="Login"
+                                              class="slds-m-top--medium"
+                                              variant="brand"
+                                              onclick="{!c.getInput}"/>
+                            <lightning:button label="Reset"
+                                              class="slds-m-top--medium"
+                                              variant="brand"
+                                              onclick="{!c.resetPass}"/>
+                        </form>
+                        <!-- / CREATE NEW FORM -->
+                        <aura:set attribute="else">
+                            <!-- Else Part Start-->
+                            <!-- CREATE NEW FORM -->
+                            <form class="slds-form--stacked">
+                                <!-- Reset Password code -->
+                                <div id="error1">
+                                    <ui:outputRichText value="{!v.mylabel1}"/></div>
+                                <lightning:input aura:id="FormReset" label="Username"
+                                                 name="Username"
+                                                 type="email"
+                                                 placeholder="Enter your Username"
+                                                 value="{!v.ResetUsername}"
+                                                 required="true" />
+                                <lightning:button label="Reset"
+                                                  class="slds-m-top--medium"
+                                                  variant="brand"
+                                                  onclick="{!c.submitresetPass}"/>
+                                <lightning:button label="Cancel"
+                                                  class="slds-m-top--medium"
+                                                  variant="brand"
+                                                  onclick="{!c.CancelReset}"/>
+                            </form>
+                        </aura:set>
+                        <!-- Else Part End -->
+                    </aura:if></fieldset>
+                <!-- / BOXED AREA --></div>
+            <!-- / CREATE NEW FORM -->
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!-- / NEW FORM -->
+</aura:component>

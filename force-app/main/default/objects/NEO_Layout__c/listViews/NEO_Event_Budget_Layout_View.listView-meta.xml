@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NEO_Event_Budget_Layout_View</fullName>
+    <columns>NAME</columns>
+    <columns>NEO_Object_Type__c</columns>
+    <columns>NEO_Layout_Name__c</columns>
+    <columns>NEO_Layout_Full_Name__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>NEO_Object_Type__c</field>
+        <operation>equals</operation>
+        <value>NEO_Event_Budget__c</value>
+    </filters>
+    <label>Event Budget</label>
+</ListView>

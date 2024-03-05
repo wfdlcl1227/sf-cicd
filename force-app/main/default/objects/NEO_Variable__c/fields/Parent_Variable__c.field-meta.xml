@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Variable__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Parent Variable</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>NEO_Variable__c.Type__c</field>
+            <operation>equals</operation>
+            <value>Object</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>NEO_Variable__c</referenceTo>
+    <relationshipLabel>Fields</relationshipLabel>
+    <relationshipName>NEO_Variables</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

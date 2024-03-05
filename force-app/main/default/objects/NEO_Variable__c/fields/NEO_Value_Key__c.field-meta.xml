@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NEO_Value_Key__c</fullName>
+    <externalId>false</externalId>
+    <label>Value Key</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>{0}__{1}</fullName>
+                <default>false</default>
+                <label>By Fiscal Year</label>
+            </value>
+            <value>
+                <fullName>{0}__{1}{2}</fullName>
+                <default>false</default>
+                <label>By Fiscal Quarter</label>
+            </value>
+            <value>
+                <fullName>{0}__{1}{2}{3}</fullName>
+                <default>false</default>
+                <label>By Fiscal Month</label>
+            </value>
+            <value>
+                <fullName>{0}__{1}{2}{3}__{4}</fullName>
+                <default>false</default>
+                <label>By Day</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

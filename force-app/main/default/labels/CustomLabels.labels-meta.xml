@@ -1,0 +1,1168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>NEO_Action</fullName>
+        <categories>NEO_Satellite_Delegation_Setting_LC, NEO_Satellite_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Audit_Title_Reconcile_Failed</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Audit Title Reconcile Failed</shortDescription>
+        <value>Reconcile Failed</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Audit_Title_Reconcile_Failed_Reason</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Audit Title Reconcile Failed Reason</shortDescription>
+        <value>Reconcile Failed Reason</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Audit_Title_Report</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Audit Title Report</shortDescription>
+        <value>Satellite Report Audit</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Audit_Title_Small</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Audit Title Small</shortDescription>
+        <value>Audit Operation</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Close_Label</fullName>
+        <categories>Speaker Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Label</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Create_Package</fullName>
+        <categories>Package Mgmt Page Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Create_Package</shortDescription>
+        <value>Create Package</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Deleted_Successfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Deleted Successfully</shortDescription>
+        <value>Deleted Successfully.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Duplicate_Event_Package</fullName>
+        <categories>NEO Package Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Duplicate Event Package</shortDescription>
+        <value>The event is duplicate in the package</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Comment_Line1</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Comment_Line1</shortDescription>
+        <value>Event {0} had been audit</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Comment_Line2</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Comment_Line2</shortDescription>
+        <value>Audit Type: {0}</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Comment_Line3</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Comment_Line3</shortDescription>
+        <value>Audit Reason:</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Completed_Status</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Completed Status</shortDescription>
+        <value>Is Completed ?</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Enter_Report</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Enter Report</shortDescription>
+        <value>Please enter Report #</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Failed</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Failed</shortDescription>
+        <value>Report Audit Failed: {0}</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Full_Report</fullName>
+        <categories>NEO_Event_Audit_LC, NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Full Report</shortDescription>
+        <value>Please enter the full Report #</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Has_MultiVersion</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Has_MultiVersion</shortDescription>
+        <value>Notice! Event Has More Than One Version</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Has_MultiVersion_Guide</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Has_MultiVersion_Guide</shortDescription>
+        <value>Click here to open new tab to print the latest event cover:</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_History_Result</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit History Result</shortDescription>
+        <value>Audit History</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Input_Report</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Input Report</shortDescription>
+        <value>Please input Report Number!</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Link</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Link</shortDescription>
+        <value>Link to Report</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Link_Report_Failed</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Link Report Failed</shortDescription>
+        <value>Link PTE Report {0} Failed</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Link_Report_Success</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Link Report Success</shortDescription>
+        <value>Link PTE Report {0} Success</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Match_Quantity</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Match Quantity</shortDescription>
+        <value>Match Quantity</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Must_Select_Reason</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Must_Select_Reason</shortDescription>
+        <value>Audit Reason Must Be Selected!</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Not_Passed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NEO_Event_Audit_Not_Passed</shortDescription>
+        <value>Intial Audit Not Passed</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Operation_Type</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Operation_Type</shortDescription>
+        <value>Audit operation type</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Operation_Type_Followup</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Operation_Type_Followup</shortDescription>
+        <value>Follow-Up</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Operation_Type_Reconcile</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Operation_Type_Reconcile</shortDescription>
+        <value>Reconcile</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Operation_Type_Return</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Operation_Type_Return</shortDescription>
+        <value>Return</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_PTE_Report_Linked</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit PTE Report Linked</shortDescription>
+        <value>PTE Report {0} had linked to this report</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Package_Audited</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Package Audited</shortDescription>
+        <value>Package had initial audited</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Package_More_Found</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Package More Found</shortDescription>
+        <value>More then one Package Found</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Package_NotFound</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Package NotFound</shortDescription>
+        <value>No Package Found</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Package_Number</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Package Number</shortDescription>
+        <value>Please input Pakage Number!</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Paper_More_Quantity</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Paper More Quantity</shortDescription>
+        <value>Paper More Quantity</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Received_Quantity</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Received Quantity</shortDescription>
+        <value>Received Quantity</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Report_Added</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Report Added</shortDescription>
+        <value>Report Had Added</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Report_Completed</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Report Completed</shortDescription>
+        <value>Report {0} had completed</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Report_NotFound</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Report NotFound</shortDescription>
+        <value>No Report Found</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Report_Reconciled</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Report Reconciled</shortDescription>
+        <value>The report {0} has been reconciled successfully.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Select_Reason</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Select Reason</shortDescription>
+        <value>Select {0} Reason</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Send_Email</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Send Email</shortDescription>
+        <value>Send Email</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Send_Email_Manager</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Send_Email_Manager</shortDescription>
+        <value>Send Mail to Supervisor</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Success</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Success</shortDescription>
+        <value>Report Had Been Set As {0}</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Tab_Linked</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Tab Linked</shortDescription>
+        <value>Linked PTE List</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Tab_Search</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit Tab Search</shortDescription>
+        <value>Search PTE Reports</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Title_Data</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Title Data</shortDescription>
+        <value>Package Information</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Title_Large</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Title Large</shortDescription>
+        <value>Satellite Report Initial Audit</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Title_Result</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Title Result</shortDescription>
+        <value>Initial Audit Result</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Title_Scaned</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Title Scaned</shortDescription>
+        <value>Scaned Report List</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Title_Search</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Title Search</shortDescription>
+        <value>Search Package</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Title_Small</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Title Small</shortDescription>
+        <value>Initial Audit</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Title_Summary</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Title Summary</shortDescription>
+        <value>Audit Result Summary</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Title_Unmatch</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Audit Title Unmatch</shortDescription>
+        <value>Unmatched Audit Result List</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_UnLink_Report_Failed</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit UnLink Report Failed</shortDescription>
+        <value>Unlink PTE Report {0} Failed</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_UnLink_Report_Success</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Satellite Audit UnLink Report Success</shortDescription>
+        <value>Unlink PTE Report {0} Success</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Audit_Unlink</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Audit_Unlink</shortDescription>
+        <value>Unlink</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Assign</fullName>
+        <categories>NEO_Event_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Assign</shortDescription>
+        <value>Assign</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Clear</fullName>
+        <categories>NEO_Event_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Clear</shortDescription>
+        <value>Clear</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Close</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Confirm</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Confirm</shortDescription>
+        <value>Confirm</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Export</fullName>
+        <categories>NEO_Event_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Export</shortDescription>
+        <value>Export</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Filter</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Process</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Process</shortDescription>
+        <value>Process</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Reconcile</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Reconcile</shortDescription>
+        <value>Reconcile</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Scan</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Scan</shortDescription>
+        <value>Scan</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Button_Search</fullName>
+        <categories>NEO_Event_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Button_Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Comment</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Comment</shortDescription>
+        <value>Comment</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Digital_More_Quantity</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Digital More Quantity</shortDescription>
+        <value>Digital More Quantity</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_DualListbox_Available</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_DualListbox_Available</shortDescription>
+        <value>Available</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_DualListbox_Selected</fullName>
+        <categories>NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_DualListbox_Selected</shortDescription>
+        <value>Selected</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Duplicated_Event_Found</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Duplicated_Event_Found</shortDescription>
+        <value>Duplicated Event Found!</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Duplicated_Event_Found_Notice</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Duplicated_Event_Found_Notice</shortDescription>
+        <value>{0} has duplicate events</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Event_Query_AP_Week_Failed</fullName>
+        <categories>NEO_Event_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Event_Query_AP_Week_Failed</shortDescription>
+        <value>Calculate AP Week Failed.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Event_Query_Advanced_Title</fullName>
+        <categories>NEO_Event_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Event Query Advanced Title</shortDescription>
+        <value>Advanced</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Event_Query_Results</fullName>
+        <categories>NEO_Event_Delegation_Setting_LC, NEO_Event_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Event Query Results</shortDescription>
+        <value>Results</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Event_Query_Search_Title</fullName>
+        <categories>NEO_Event_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Event Query Search Title</shortDescription>
+        <value>Search Event</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Event_Requester</fullName>
+        <categories>NEO_Event_Delegation_Setting_LC, NEO_Event_Event_Query_LC, NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Event Requester</shortDescription>
+        <value>Event Requester</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Event_Type</fullName>
+        <categories>NEO_Event_Event_Query_LC, NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Event Type</shortDescription>
+        <value>Event Type</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Has_Duplicated</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Has_Duplicated</shortDescription>
+        <value>Has Duplicate?</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Initial_Audit_Completed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NEO_Event_Initial_Audit_Completed</shortDescription>
+        <value>Initial Audit Had Completed</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_List</fullName>
+        <categories>Package Mgmt Page Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_List</shortDescription>
+        <value>Event List</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_No_Event_Found</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NEO_Event_No_Event_Found</shortDescription>
+        <value>No Event Found</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Not_Ready_For_Audit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NEO Event Not Ready For Audit</shortDescription>
+        <value>Event Not Ready For Audit</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Not_Received_Report</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NEO_Event_Not_Received_Report</shortDescription>
+        <value>Not Received Report</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Query_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Query Date</shortDescription>
+        <value>Event Start {0}</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Reconciled_Failed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NEO_Event_Reconciled_Failed</shortDescription>
+        <value>Reconciled Failed:</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Requester</fullName>
+        <categories>NEO_Delegation_Setting_LC, NEO_Event_Query_LC, NEO_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Requester</shortDescription>
+        <value>Event Requester</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Requestor</fullName>
+        <categories>Package Mgmt Page Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Requestor</shortDescription>
+        <value>Event Requestor</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Requestor_Employee</fullName>
+        <categories>NEO_Event_Initial_Audit_LC, NEO_Event_Event_Query_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Requestor Employee</shortDescription>
+        <value>Requestor Employee No.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Toast_Title_Completed_Report</fullName>
+        <categories>NEO_Event_Initial_Audit_LC, NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Toast_Title_Completed_Report</shortDescription>
+        <value>Completed Report</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Toast_Title_Error</fullName>
+        <categories>NEO_Event_Initial_Audit_LC, NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Toast_Title_Error</shortDescription>
+        <value>Error!</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Toast_Title_Initial_Audit_Succeed</fullName>
+        <categories>NEO_Event_Initial_Audit_LC, NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Toast_Title_Initial_Audit_Succeed</shortDescription>
+        <value>Initial Audit Succeed!</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Toast_Title_Success</fullName>
+        <categories>NEO_Event_Initial_Audit_LC, NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Toast_Title_Success</shortDescription>
+        <value>Success!</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Toast_Title_Warning</fullName>
+        <categories>NEO_Event_Initial_Audit_LC,NEO_Event_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Event_Toast_Title_Warning</shortDescription>
+        <value>Warning!</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Event_Type</fullName>
+        <categories>NEO_Event_Query_LC, NEO_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Event Type</shortDescription>
+        <value>Event Type</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Full_Event_Number</fullName>
+        <categories>Package Mgmt Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Full_Event_Number</shortDescription>
+        <value>Please enter the full event #</value>
+    </labels>
+    <labels>
+        <fullName>NEO_No_Event_Matched</fullName>
+        <categories>NEO Package Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Event Matched</shortDescription>
+        <value>No Event Matched</value>
+    </labels>
+    <labels>
+        <fullName>NEO_No_Record_in_this_package</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Record in this package</shortDescription>
+        <value>No Record in this package.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Package_create_Successfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Package create Successfully</shortDescription>
+        <value>Package create Successfully!</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Please_Enter_Event_No</fullName>
+        <categories>Package Mgmt Page Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Please_Enter_Event_No</shortDescription>
+        <value>Please enter event #</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Action</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Actions</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Actions</shortDescription>
+        <value>Actions</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Add_Condition</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Add Condition</shortDescription>
+        <value>Add Condition</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Add_Fields</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Add Fields</shortDescription>
+        <value>Add Fields</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Add_Related_Objects</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Add Related Objects</shortDescription>
+        <value>Add Related Objects</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Add_Rules</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Add Rules</shortDescription>
+        <value>Add Rules</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Aggregation_Function</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Aggregation Function</shortDescription>
+        <value>Aggregation Function</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Available</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Available</shortDescription>
+        <value>Available</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Available_Fields_List</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Available Fields List</shortDescription>
+        <value>Available fields list</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Available_Related_Objects_List</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Available Related Objects List</shortDescription>
+        <value>Available Related Objects List</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Basic_Information</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Basic Information</shortDescription>
+        <value>Basic Information</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Business_Rules</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Business Rules</shortDescription>
+        <value>Business Rules</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Cancel</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Check_Page_Msg</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Check Page Msg</shortDescription>
+        <value>Please check the page messages.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Clone</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Clone</shortDescription>
+        <value>Clone</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Close</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Delete</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Error</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_False</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE False</shortDescription>
+        <value>FALSE</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Filter_Criteria</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Filter Criteria</shortDescription>
+        <value>Filter Criteria</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_List_Loading_Label</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE List Loading Label</shortDescription>
+        <value>List loading, please wait a moment.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_List_Message</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE List Message</shortDescription>
+        <value>No options selected, please select at least one.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_New</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_No_Records_Matched</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE No Records Matched</shortDescription>
+        <value>No records matched.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_OK</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE OK</shortDescription>
+        <value>OK</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Related_Rules_List</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Related Rules List</shortDescription>
+        <value>Related Rules List</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Rule_Variable_Definition</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Rule Variable Definition</shortDescription>
+        <value>Rule Variable Definition</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Save</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Save_Successfully</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Save Successfully</shortDescription>
+        <value>Save successfully.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Select_Master_Object</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Select Master Object</shortDescription>
+        <value>Select Master Object</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Selected</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Selected</shortDescription>
+        <value>Selected</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Selected_Fields_List</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Selected Fields List</shortDescription>
+        <value>Selected Fields List</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Selected_Related_Objects_List</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE Selected Related Objects List</shortDescription>
+        <value>Selected Related Objects List</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Success</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Success</shortDescription>
+        <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_System_Information</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO RE System Information</shortDescription>
+        <value>System Information</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_True</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE True</shortDescription>
+        <value>TRUE</value>
+    </labels>
+    <labels>
+        <fullName>NEO_RE_Warning</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RE Warning</shortDescription>
+        <value>Warning</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Report_Not_Ready_To_Audit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NEO_Report_Not_Ready_To_Audit</shortDescription>
+        <value>Report Not Ready To Audit</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Sattellite_Audit_Mailer_Scanned_Quantity</fullName>
+        <categories>NEO_Event_Initial_Audit_LC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO Sattellite Audit Mailer Scanned Quantity</shortDescription>
+        <value>Mailer Scanned Quantity</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Search</fullName>
+        <categories>Speaker Search Page Label, Package Mgmt Page Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Search_Criteria</fullName>
+        <categories>Package Mgmt Page Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NEO_Search_Criteria</shortDescription>
+        <value>Search Criteria</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Search_Results_Label</fullName>
+        <categories>Speaker Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Results Label</shortDescription>
+        <value>Search Results</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Select_Label</fullName>
+        <categories>Speaker Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Label</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Status_Event_Packaged</fullName>
+        <categories>NEO Package Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status Event Packaged</shortDescription>
+        <value>Only event with status Report Approved can be added to package.</value>
+    </labels>
+    <labels>
+        <fullName>NEO_Trigger_Switches_Label</fullName>
+        <categories>Rule Engine Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Trigger Switches Label</shortDescription>
+        <value>Trigger Switches</value>
+    </labels>
+</CustomLabels>

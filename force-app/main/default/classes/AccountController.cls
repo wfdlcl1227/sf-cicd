@@ -1,4 +1,5 @@
 public with sharing class AccountController {
+/f2 changes
     @AuraEnabled(cacheable=true)
     public static List<Contact> getContactList() {
         return [select id, name, phone,title,Picture__c,Company__c from contact order by createddate limit 3] ;
